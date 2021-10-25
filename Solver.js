@@ -32,45 +32,50 @@ class Solver {
 
   solve() {
     if (!this.isGridValid() && this.stack.length != 0) {
-      let cur = this.current;
       // First changeable spot
       // Add to stack
       // Insert digit
-      this.grid[cur[0]][cur[1]].v = this.digit;
+      this.grid[this.current[0]][this.current[1]].v = this.digit;
       // Check soft validity of row, col, subgrid
-      if (this.isGridSoftValid(cur[0], cur[1])) {
+      if (this.isGridSoftValid(this.current[0], this.current[1])) {
         // If soft valid, move to next changeable spot
         this.digit = 1;
         this.current = this.getNextChangeableTile();
         this.stack.push(this.current);
-        console.log('--------');
-        console.log('Soft valid!');
-        console.log('New Stack/Current');
-        console.log(this.stack);
-        console.log(this.current);
-        console.log('--------');
+        // console.log('--------');
+        // console.log('Soft valid!');
+        // console.log('New Stack/Current');
+        // console.log(this.stack);
+        // console.log(this.current);
+        // console.log('--------');
       } else {
-        console.clear();
+        // console.clear();
         // If not, try increasing number
         this.digit++;
 
         // if digit is 10, BACKTRACK TIME?
         while (this.digit > 9) {
           // Changed to a while statement for "recursion"
-          console.log('DIGIT > 9');
+          // console.log('DIGIT > 9');
 
           // Reset current tile
-          this.grid[cur[0]][cur[1]].v = 0;
+          this.grid[this.current[0]][this.current[1]].v = 0;
 
           // Backtrack
+          //     Note: I should just be able to say this.current = this.stack.pop();
+          //     But with the way I wrote this I need to "pop" it twice, hence the pop
+          //     and the this.current = this.stack[this.stack.length - 1]
+
           this.stack.pop();
           if (this.stack.length == 0) return;
+          // console.log('--------');
+          // console.log('Backtracking');
+          // console.log('Old Current');
+          // console.log(this.current);
+          // console.log('New Current');
           this.current = this.stack[this.stack.length - 1];
-          console.log('--------');
-          console.log('Backtracking');
-          console.log('New Current');
-          console.log(this.current);
-          console.log('--------');
+          // console.log(this.current);
+          // console.log('--------');
 
           // Start digit at new current tile + 1
           this.digit = this.grid[this.current[0]][this.current[1]].v + 1;
@@ -84,6 +89,7 @@ class Solver {
         }
       }
     } else {
+      console.log('SOLVED');
       return true;
     }
   }
