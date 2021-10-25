@@ -13,7 +13,7 @@ function setup() {
   background(255);
   setupGrid(g1Str);
   // setupGrid(gSolvedStr);
-  s = new Solver();
+  s = new Solver(g);
 }
 
 function draw() {
@@ -33,7 +33,7 @@ function setupGrid(gridStr) {
       i++;
     }
   }
-  console.log(g);
+  // console.log(g);
 }
 
 function visualGrid(grid) {
@@ -60,6 +60,17 @@ function visualGrid(grid) {
         strokeWeight(4);
         rect(row * size, col * size, size * 3, size * 3);
       }
+    }
+  }
+}
+
+function keyPressed() {
+  if (key === '1') {
+    s.solve();
+  }
+  if (key === '2') {
+    for (let i = 0; i < 20; i++) {
+      s.solve();
     }
   }
 }
