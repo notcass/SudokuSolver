@@ -31,7 +31,7 @@ class Solver {
   */
 
   solve() {
-    if (!this.isGridValid()) {
+    if (!this.isGridValid() && this.stack.length != 0) {
       let cur = this.current;
       // First changeable spot
       // Add to stack
@@ -50,22 +50,37 @@ class Solver {
         console.log(this.current);
         console.log('--------');
       } else {
+        console.clear();
         // If not, try increasing number
         this.digit++;
 
         // if digit is 10, BACKTRACK TIME?
-        if (this.digit > 9) {
+        while (this.digit > 9) {
+          // Changed to a while statement for "recursion"
           console.log('DIGIT > 9');
-          this.digit = 1;
+
+          // Reset current tile
+          this.grid[cur[0]][cur[1]].v = 0;
+
+          // Backtrack
           this.stack.pop();
-          this.current = this.stack.pop();
+          if (this.stack.length == 0) return;
+          this.current = this.stack[this.stack.length - 1];
+          console.log('--------');
+          console.log('Backtracking');
+          console.log('New Current');
+          console.log(this.current);
+          console.log('--------');
+
+          // Start digit at new current tile + 1
+          this.digit = this.grid[this.current[0]][this.current[1]].v + 1;
 
           // EMERGENCY EXIT??
           if (this.stack.length == 0) {
             console.log('BROKED');
             return true;
           }
-          return;
+          // return;
         }
       }
     } else {
