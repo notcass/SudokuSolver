@@ -1,8 +1,6 @@
 /// <reference path="libraries/p5.global-mode.d.ts" />
 
 let g = [];
-let g1Str =
-  '100000079805074100460100038000650910006917004019432087008206040602000091000500006';
 
 let gSolvedStr =
   '435269781682571493197834562826195347374682915951743628519326874248957136763418259';
@@ -13,6 +11,9 @@ let gAlmostSolvedStr =
 let gWikiStr =
   '530070000600195000098000060800060003400803001700020006060000280000419005000080079';
 
+let gHardStr1 =
+  '030600400000000060000009008001026040300050700206003001080190000005340007427000900';
+
 let s;
 let solveFlag = false;
 let fastSolveFlag = false;
@@ -20,10 +21,10 @@ let fastSolveFlag = false;
 function setup() {
   createCanvas(400, 400).parent('sketch-holder');
   background(255);
-  // setupGrid(g1Str);
   // setupGrid(gSolvedStr);
   // setupGrid(gAlmostSolvedStr);
-  setupGrid(gWikiStr);
+  // setupGrid(gWikiStr);
+  setupGrid(gHardStr1);
   s = new Solver(g);
 }
 
