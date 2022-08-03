@@ -3,6 +3,7 @@
  *    TODO
  *  -Add a puzzle generator
  *  -Create a puzzle by mousing over a tile and hitting a number key
+ *  -Highlight sections green when they are valid
  */
 let g = [];
 
@@ -70,6 +71,9 @@ function visualGrid(grid) {
   const offset = size / 2;
 
   for (let row = 0; row < 9; row++) {
+    //====== HIGHLIGHT GREEN TEST ====================
+    // s.isRowValid(row) ? fill(0, 255, 0) : noFill();
+    //================================================
     for (let col = 0; col < 9; col++) {
       // Draw Box
       noFill();
@@ -77,17 +81,22 @@ function visualGrid(grid) {
       stroke(0);
       rect(row * size, col * size, size, size);
 
+      // Draw 3x3 Outlines
+      if (col % 3 == 0 && row % 3 == 0) {
+        //====== HIGHLIGHT GREEN TEST =================
+        // s.isSubGridValid(row, col) ? fill(0, 255, 0) : noFill();
+        //=============================================
+
+        strokeWeight(4);
+        rect(row * size, col * size, size * 3, size * 3);
+        noFill();
+      }
+
       // Draw Text
       grid[row][col].c == true ? fill(0) : fill(150, 0, 255);
       textSize(34);
+      strokeWeight(1);
       text(grid[row][col].v, col * size + offset, row * size + offset);
-
-      // Draw 3x3 Outlines
-      if (col % 3 == 0 && row % 3 == 0) {
-        noFill();
-        strokeWeight(4);
-        rect(row * size, col * size, size * 3, size * 3);
-      }
     }
   }
 }
