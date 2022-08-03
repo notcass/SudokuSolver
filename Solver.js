@@ -1,9 +1,3 @@
-/**
- * Todo
- * 1. Create a function that checks if it is a completed grid --Done
- * 2. Figure out a way to make sure we don't change the starting numbers
- *    -How to do this elegantly?
- */
 class Solver {
   constructor(grid) {
     this.grid = grid;

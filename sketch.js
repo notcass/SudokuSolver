@@ -1,5 +1,9 @@
 /// <reference path="libraries/p5.global-mode.d.ts" />
-
+/**
+ *    TODO
+ *  -Add a puzzle generator
+ *  -Create a puzzle by mousing over a tile and hitting a number key
+ */
 let g = [];
 
 let gSolvedStr =
@@ -23,8 +27,8 @@ function setup() {
   background(255);
   // setupGrid(gSolvedStr);
   // setupGrid(gAlmostSolvedStr);
-  // setupGrid(gWikiStr);
-  setupGrid(gHardStr1);
+  setupGrid(gWikiStr);
+  // setupGrid(gHardStr1);
   s = new Solver(g);
 }
 
