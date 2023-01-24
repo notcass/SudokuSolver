@@ -1,8 +1,8 @@
 /// <reference path="libraries/p5.global-mode.d.ts" />
-/**
- *    TODO
- *  -Add a puzzle generator
- *  -Create a puzzle by mousing over a tile and hitting a number key
+/*
+     TODO
+   -Add a puzzle generator
+   -Create a puzzle by mousing over a tile and hitting a number key
  *  -Highlight sections green when they are valid
  */
 let g = [];
@@ -28,7 +28,7 @@ function setup() {
   background(255);
   // setupGrid(gSolvedStr);
   // setupGrid(gAlmostSolvedStr);
-  setupGrid(gWikiStr);
+  setupGrid(g, gWikiStr);
   // setupGrid(gHardStr1);
   s = new Solver(g);
 }
@@ -51,15 +51,15 @@ function fastSolve() {
   }
 }
 
-function setupGrid(gridStr) {
+function setupGrid(grid, gridStr) {
   for (let i = 0; i < 9; i++) {
-    g.push([]);
+    grid.push([]);
   }
   let i = 0;
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       changeable = gridStr[i] == 0 ? true : false;
-      g[row][col] = { v: gridStr[i], c: changeable };
+      grid[row][col] = { v: gridStr[i], c: changeable };
       i++;
     }
   }
@@ -72,7 +72,7 @@ function visualGrid(grid) {
 
   for (let row = 0; row < 9; row++) {
     //====== HIGHLIGHT GREEN TEST ====================
-    // s.isRowValid(row) ? fill(0, 255, 0) : noFill();
+    s.isRowValid(row) ? fill(0, 255, 0) : noFill();
     //================================================
     for (let col = 0; col < 9; col++) {
       // Draw Box
@@ -84,7 +84,7 @@ function visualGrid(grid) {
       // Draw 3x3 Outlines
       if (col % 3 == 0 && row % 3 == 0) {
         //====== HIGHLIGHT GREEN TEST =================
-        // s.isSubGridValid(row, col) ? fill(0, 255, 0) : noFill();
+        // s.isSubGridValid(row, col) ? fill(0, 255, 255) : noFill();
         //=============================================
 
         strokeWeight(4);
